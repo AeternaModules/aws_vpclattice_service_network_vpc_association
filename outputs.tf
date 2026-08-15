@@ -12,7 +12,7 @@ output "vpclattice_service_network_vpc_associations_created_by" {
 }
 output "vpclattice_service_network_vpc_associations_dns_options" {
   description = "Map of dns_options values across all vpclattice_service_network_vpc_associations, keyed the same as var.vpclattice_service_network_vpc_associations"
-  value       = { for k, v in aws_vpclattice_service_network_vpc_association.vpclattice_service_network_vpc_associations : k => v.dns_options if v.dns_options != null && length(v.dns_options) > 0 }
+  value       = { for k, v in aws_vpclattice_service_network_vpc_association.vpclattice_service_network_vpc_associations : k => one(v.dns_options) if v.dns_options != null && length(v.dns_options) > 0 }
 }
 output "vpclattice_service_network_vpc_associations_private_dns_enabled" {
   description = "Map of private_dns_enabled values across all vpclattice_service_network_vpc_associations, keyed the same as var.vpclattice_service_network_vpc_associations"
